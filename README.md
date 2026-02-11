@@ -2,6 +2,9 @@
 
 A basic Express.js web server created to demonstrate fundamental backend skills, including routing, middleware integration, and error handling.
 
+## 🔗 Live Demo
+**API URL:** [https://nodejs-hw-w025.onrender.com](https://nodejs-hw-w025.onrender.com)
+
 ## 🚀 Features
 
 - **RESTful API**: Basic routes for managing notes.
