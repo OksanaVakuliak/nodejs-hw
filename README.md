@@ -59,6 +59,7 @@ src/
 
    ```bash
    PORT=3000
+   MONGO_URL=mongodb+srv://<username>:<password>@cluster.mongodb.net/database_name
    ```
 
 4. **Run the server:**
