@@ -1,29 +1,44 @@
 # Node.js Homework - Express Server (Module 01)
 
-A basic Express.js web server created to demonstrate fundamental backend skills, including routing, middleware integration, and error handling.
+This project is an evolution of the previous Express server, now integrated with **MongoDB Atlas** using **Mongoose**. The application follows a modular architecture, separating routes, controllers, models, and middleware for better maintainability.
 
 ## 🚀 Features
 
-- **RESTful API**: Basic routes for managing notes.
-- **Logging**: Request logging using `pino-http` and `pino-pretty`.
-- **Security**: CORS enabled for cross-origin requests.
-- **Error Handling**: Custom global error middleware and 404 route handling.
-- **Environment Variables**: Port configuration via `.env`.
+- **Full CRUD Operations**: Create, Read, Update, and Delete notes.
+- **Database Integration**: Real-time data storage with MongoDB Atlas.
+- **Modular Architecture**: Clean separation of concerns (Controllers, Services, Routes).
+- **Validation**: Strict Mongoose schemas with `enum` tags and `timestamps`.
+- **Enhanced Error Handling**: Integrated `http-errors` for specific status codes (404, 400).
 
 ## 🛠️ Tech Stack
 
-- **Node.js** (v24.11.0)
-- **Express.js** (v5.2.1)
-- **Pino** (Logging)
-- **Dotenv** (Environment management)
+- **Runtime**: Node.js (v24.11.0)
+- **Framework**: Express.js (v5.2.1)
+- **Database**: MongoDB (via Mongoose)
+- **Logging**: Pino-http & Pino-pretty
+- **Environment**: Dotenv
+
+## 📂 Project Structure
+
+```text
+src/
+├── controllers/    # Request handling logic
+├── db/             # Database connection setup
+├── middleware/     # Global error and 404 handlers, logging
+├── models/         # Mongoose schemas (Note model)
+├── routes/         # API endpoint definitions
+└── server.js       # App entry point & middleware registration
+```
 
 ## 📋 API Endpoints
 
-| Method  | Endpoint         | Description                    |
-| :------ | :--------------- | :----------------------------- |
-| **GET** | `/notes`         | Retrieve all notes             |
-| **GET** | `/notes/:noteId` | Retrieve a specific note by ID |
-| **GET** | `/test-error`    | Simulate a 500 Server Error    |
+| Method     | Endpoint         | Description                    |
+| :--------- | :--------------- | :----------------------------- |
+| **GET**    | `/notes`         | Retrieve all notes             |
+| **GET**    | `/notes/:noteId` | Retrieve a specific note by ID |
+| **POST**   | `/notes`         | Create a new note              |
+| **PATCH**  | `/notes/:noteId` | Update an existing note        |
+| **DELETE** | `/notes/:noteId` | Delete a note by ID            |
 
 ## ⚙️ Installation & Setup
 
