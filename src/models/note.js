@@ -11,10 +11,10 @@ const noteSchema = new Schema(
     content: {
       type: String,
       trim: true,
+      default: '',
     },
     tag: {
       type: String,
-      required: true,
       enum: [
         'Work',
         'Personal',
@@ -28,11 +28,12 @@ const noteSchema = new Schema(
         'Todo',
       ],
     },
+    default: 'Todo',
   },
   {
     timestamps: true,
+    versionKey: false,
   },
-  { versionKey: false },
 );
 
 export const Note = model('Note', noteSchema);
