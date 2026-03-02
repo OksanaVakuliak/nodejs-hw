@@ -1,20 +1,22 @@
-# Node.js Homework - Express Server (Module 01)
+# Node.js Homework - Validation & Filtering (Module 03)
 
-This project is an evolution of the previous Express server, now integrated with **MongoDB Atlas** using **Mongoose**. The application follows a modular architecture, separating routes, controllers, models, and middleware for better maintainability.
+This project is an advanced Express.js server integrated with **MongoDB Atlas**. It features full CRUD operations for a notes collection, including advanced filtering, full-text search, pagination, and strict data validation.
 
 ## 🚀 Features
 
+- **Advanced Filtering**: Filter notes by `tag` and perform full-text search using MongoDB text indexes.
+- **Pagination**: Efficiently retrieve data using `page` and `perPage` query parameters.
+- **Strict Validation**: All incoming requests are validated using **Celebrate** and **Joi**.
 - **Full CRUD Operations**: Create, Read, Update, and Delete notes.
-- **Database Integration**: Real-time data storage with MongoDB Atlas.
-- **Modular Architecture**: Clean separation of concerns (Controllers, Services, Routes).
-- **Validation**: Strict Mongoose schemas with `enum` tags and `timestamps`.
-- **Enhanced Error Handling**: Integrated `http-errors` for specific status codes (404, 400).
+- **Database Integration**: Real-time data storage with MongoDB Atlas via Mongoose.
+- **Enhanced Error Handling**: Integrated `http-errors` and `celebrate` error middleware for precise client feedback.
 
 ## 🛠️ Tech Stack
 
 - **Runtime**: Node.js (v24.11.0)
 - **Framework**: Express.js (v5.2.1)
 - **Database**: MongoDB (via Mongoose)
+- **Validation**: Celebrate / Joi
 - **Logging**: Pino-http & Pino-pretty
 - **Environment**: Dotenv
 
@@ -22,11 +24,13 @@ This project is an evolution of the previous Express server, now integrated with
 
 ```text
 src/
+├── constants/      # Global constants
 ├── controllers/    # Request handling logic
 ├── db/             # Database connection setup
 ├── middleware/     # Global error and 404 handlers, logging
 ├── models/         # Mongoose schemas (Note model)
 ├── routes/         # API endpoint definitions
+├── validations/    # Joi validation schemas
 └── server.js       # App entry point & middleware registration
 ```
 
@@ -39,6 +43,15 @@ src/
 | **POST**   | `/notes`         | Create a new note              |
 | **PATCH**  | `/notes/:noteId` | Update an existing note        |
 | **DELETE** | `/notes/:noteId` | Delete a note by ID            |
+
+### Query Parameters for `GET /notes`:
+* **page:** Page number (default: 1)
+
+* **perPage:** Items per page (5-20, default: 10)
+
+* **tag:** Filter by specific tag (Work, Personal, etc.)
+
+* **search:** Full-text search across title and content
 
 ## ⚙️ Installation & Setup
 
