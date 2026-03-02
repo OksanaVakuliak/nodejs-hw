@@ -1,4 +1,4 @@
-# Node.js Homework - Express Server (Module 01)
+# Node.js Homework - MongoDB & Mongoose Integration (Module 02)
 
 This project is an evolution of the previous Express server, now integrated with **MongoDB Atlas** using **Mongoose**. The application follows a modular architecture, separating routes, controllers, models, and middleware for better maintainability.
 
