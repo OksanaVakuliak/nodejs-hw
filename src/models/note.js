@@ -7,7 +7,7 @@ const noteSchema = new Schema(
     title: {
       type: String,
       required: true,
-      trim: true, // прибирає пробіли на початку та в кінці
+      trim: true,
     },
     content: {
       type: String,
@@ -18,6 +18,11 @@ const noteSchema = new Schema(
       type: String,
       enum: TAGS,
       default: 'Todo',
+    },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
     },
   },
   {

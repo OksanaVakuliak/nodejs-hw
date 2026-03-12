@@ -1,15 +1,16 @@
-# Node.js Homework - Validation & Filtering (Module 03)
+# Node.js Homework - Authentication & Private Collections (Module 04)
 
-This project is an advanced Express.js server integrated with **MongoDB Atlas**. It features full CRUD operations for a notes collection, including advanced filtering, full-text search, pagination, and strict data validation.
+This project is a secure, production-ready Express.js server integrated with **MongoDB Atlas**. It implements a complete authentication system with user registration, login, session management via secure cookies, and private data collections.
 
 ## 🚀 Features
 
-- **Advanced Filtering**: Filter notes by `tag` and perform full-text search using MongoDB text indexes.
-- **Pagination**: Efficiently retrieve data using `page` and `perPage` query parameters.
-- **Strict Validation**: All incoming requests are validated using **Celebrate** and **Joi**.
-- **Full CRUD Operations**: Create, Read, Update, and Delete notes.
-- **Database Integration**: Real-time data storage with MongoDB Atlas via Mongoose.
-- **Enhanced Error Handling**: Integrated `http-errors` and `celebrate` error middleware for precise client feedback.
+- **User Authentication**: Secure Registration and Login with password hashing via `bcrypt`.
+- **Session Management**: Advanced session handling using `accessToken` and `refreshToken` stored in secure, `httpOnly` cookies.
+- **Private Collections**: Each user has access only to their own notes. Data isolation is strictly enforced at the database level.
+- **Advanced Filtering & Search**: Filter private notes by `tag` and perform full-text search.
+- **Pagination**: Efficiently retrieve private data using `page` and `perPage` query parameters.
+- **Strict Validation**: All authentication and note-related requests are validated using **Celebrate** and **Joi**.
+- **Secure Architecture**: Implementation of an `authenticate` middleware to protect private routes.
 
 ## 🛠️ Tech Stack
 
@@ -17,6 +18,7 @@ This project is an advanced Express.js server integrated with **MongoDB Atlas**.
 - **Framework**: Express.js (v5.2.1)
 - **Database**: MongoDB (via Mongoose)
 - **Validation**: Celebrate / Joi
+- **Security**: Bcrypt (Hashing), Cookie-parser
 - **Logging**: Pino-http & Pino-pretty
 - **Environment**: Dotenv
 
@@ -27,14 +29,26 @@ src/
 ├── constants/      # Global constants
 ├── controllers/    # Request handling logic
 ├── db/             # Database connection setup
-├── middleware/     # Global error and 404 handlers, logging
-├── models/         # Mongoose schemas (Note model)
+├── middleware/     # Auth, Error handlers, 404, logging
+├── models/         # Mongoose schemas (User, Session, Note)
 ├── routes/         # API endpoint definitions
+├── services/       # Auth logic (Sessions and Cookies)
 ├── validations/    # Joi validation schemas
 └── server.js       # App entry point & middleware registration
 ```
 
 ## 📋 API Endpoints
+
+### Authentication
+
+| Method   | Endpoint         | Description                              |
+| :------- | :--------------- | :--------------------------------------- |
+| **POST** | `/auth/register` | Register a new user                      |
+| **POST** | `/auth/login`    | Login user and create session            |
+| **POST** | `/auth/refresh`  | Refresh access token using refresh token |
+| **POST** | `/auth/logout`   | End session and clear cookies            |
+
+### Notes (Private)
 
 | Method     | Endpoint         | Description                    |
 | :--------- | :--------------- | :----------------------------- |
@@ -45,13 +59,14 @@ src/
 | **DELETE** | `/notes/:noteId` | Delete a note by ID            |
 
 ### Query Parameters for `GET /notes`:
-* **page:** Page number (default: 1)
 
-* **perPage:** Items per page (5-20, default: 10)
+- **page:** Page number (default: 1)
 
-* **tag:** Filter by specific tag (Work, Personal, etc.)
+- **perPage:** Items per page (5-20, default: 10)
 
-* **search:** Full-text search across title and content
+- **tag:** Filter by specific tag (Work, Personal, etc.)
+
+- **search:** Full-text search across title and content
 
 ## ⚙️ Installation & Setup
 
