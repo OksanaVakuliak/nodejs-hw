@@ -85,6 +85,11 @@ src/
 
 - **search:** Full-text search across title and content
 
+## Reset Password Email Template
+
+  <img width="977" height="592" alt="image" src="https://github.com/user-attachments/assets/9c74d843-584e-406e-9d1c-6f3e3486b70d" />
+
+
 ## ⚙️ Installation & Setup
 
 1. **Clone the repository:**
